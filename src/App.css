@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.mainContent {
+  display: flex;
+  gap: 8px;
+} 
+
+.mainContent .col {
+  flex: 1;
+  border: 1px solid black;
+}
+ 
+.col .headerCol {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 40px;
+
+}
+
+.col .headerCol .leftContent,
+.col .headerCol .rightContent{
+      display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.col  .listCart {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.col  .listCart .CartItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid black;
+}
