@@ -32,6 +32,14 @@ function App() {
 
   const onCloseModal = () => setDisplayModal(false);
 
+  const handleAddTask = (task) => {
+    setListTask((pre) => {
+      return [...pre, task];
+    });
+
+    onCloseModal();
+  };
+
   return (
     <>
       <div className="container" style={{ padding: "8px" }}>
@@ -51,7 +59,14 @@ function App() {
         </div>
       </div>
 
-      {displayModal ? <ModalCreateCart onCloseModal={onCloseModal} /> : ""}
+      {displayModal ? (
+        <ModalCreateCart
+          onCloseModal={onCloseModal}
+          handleAddTask={handleAddTask}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 }
