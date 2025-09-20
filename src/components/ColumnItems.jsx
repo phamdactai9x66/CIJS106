@@ -23,7 +23,7 @@ const ColumnItems = ({ listTask, name, statusId, className }) => {
           return (
             <Cart
               title={task.title}
-              description={task.title}
+              description={task.description}
               id={task.taskId}
             />
           );
