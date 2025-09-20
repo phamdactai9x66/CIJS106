@@ -8,6 +8,8 @@ import ModalCreateCart from "./components/ModalCreateCart";
 function App() {
   const [listTask, setListTask] = useState(tasks);
 
+  const [displayModal, setDisplayModal] = useState(false);
+
   const onChange = (event) => {
     const value = event.target.value;
 
@@ -26,12 +28,16 @@ function App() {
     setListTask(findItem);
   };
 
+  const onOpenModal = () => setDisplayModal(true);
+
+  const onCloseModal = () => setDisplayModal(false);
+
   return (
     <>
       <div className="container" style={{ padding: "8px" }}>
         <div className="header">
           <input type="text" onChange={onChange} placeholder="Search" />
-          <button>New Item</button>
+          <button onClick={onOpenModal}>New Item</button>
         </div>
 
         <div className="mainContent">
@@ -45,7 +51,7 @@ function App() {
         </div>
       </div>
 
-      <ModalCreateCart />
+      {displayModal ? <ModalCreateCart onCloseModal={onCloseModal} /> : ""}
     </>
   );
 }

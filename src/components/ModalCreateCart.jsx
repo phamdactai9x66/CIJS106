@@ -1,9 +1,11 @@
 import React from "react";
 
-const ModalCreateCart = () => {
+const ModalCreateCart = (props) => {
   return (
     <div className="modalCreateCart">
-      <div className="iconClose">X</div>
+      <div className="iconClose" onClick={props.onCloseModal}>
+        X
+      </div>
     </div>
   );
 };
