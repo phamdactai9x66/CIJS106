@@ -41,3 +41,21 @@
   gap: 8px;
   border: 1px solid black;
 }
+
+.modalCreateCart {
+  position: fixed;
+  width: 100%;
+  max-width: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  background: wheat;
+}
+
+.modalCreateCart .iconClose {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  cursor: pointer;
+}
