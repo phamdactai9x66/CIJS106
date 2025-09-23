@@ -11,7 +11,7 @@ function App() {
 
   const [displayModal, setDisplayModal] = useState(false);
 
-  const [displayModalEdit] = useState(false);
+  const [displayModalEdit, setDisplayModalEdit] = useState(false);
 
   const onChange = (event) => {
     const value = event.target.value;
@@ -35,6 +35,14 @@ function App() {
 
   const onCloseModal = () => setDisplayModal(false);
 
+  const onOpenModalEdit = () => {
+    setDisplayModalEdit(true);
+  };
+
+  const onCloseModalEdit = () => {
+    setDisplayModalEdit(false);
+  };
+
   const handleAddTask = (task) => {
     setListTask((pre) => {
       return [...pre, task];
@@ -52,7 +60,12 @@ function App() {
         </div>
 
         <div className="mainContent">
-          <ColumnItems listTask={listTask} name={"To Do"} statusId={1} />
+          <ColumnItems
+            listTask={listTask}
+            name={"To Do"}
+            statusId={1}
+            onOpenModal={onOpenModalEdit}
+          />
 
           <ColumnItems listTask={listTask} name={"In Process"} statusId={2} />
 
@@ -73,7 +86,7 @@ function App() {
 
       {displayModalEdit ? (
         <ModalEditCart
-          onCloseModal={onCloseModal}
+          onCloseModal={onCloseModalEdit}
           handleAddTask={handleAddTask}
         />
       ) : (

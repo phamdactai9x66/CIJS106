@@ -1,7 +1,7 @@
 import React from "react";
 import Cart from "../components/Cart";
 
-const ColumnItems = ({ listTask, name, statusId, className }) => {
+const ColumnItems = ({ listTask, name, statusId, className, onOpenModal }) => {
   const filterTask = listTask.filter((task) => task.statusId == statusId);
 
   return (
@@ -25,6 +25,7 @@ const ColumnItems = ({ listTask, name, statusId, className }) => {
               title={task.title}
               description={task.description}
               id={task.taskId}
+              onOpenModal={onOpenModal}
             />
           );
         })}
