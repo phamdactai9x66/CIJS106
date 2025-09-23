@@ -13,6 +13,8 @@ function App() {
 
   const [displayModalEdit, setDisplayModalEdit] = useState(false);
 
+  const [idCart, setIdCart] = useState("");
+
   const onChange = (event) => {
     const value = event.target.value;
 
@@ -35,8 +37,9 @@ function App() {
 
   const onCloseModal = () => setDisplayModal(false);
 
-  const onOpenModalEdit = () => {
+  const onOpenModalEdit = (idTask) => {
     setDisplayModalEdit(true);
+    setIdCart(idTask);
   };
 
   const onCloseModalEdit = () => {
@@ -49,6 +52,19 @@ function App() {
     });
 
     onCloseModal();
+  };
+
+  const handleEditTask = (task) => {
+    const editTask = listTask.map((e) => {
+      if (e.taskId === task.taskId) {
+        return { ...e, ...task };
+      }
+
+      return e;
+    });
+
+    setListTask(editTask);
+    onCloseModalEdit();
   };
 
   return (
@@ -67,11 +83,26 @@ function App() {
             onOpenModal={onOpenModalEdit}
           />
 
-          <ColumnItems listTask={listTask} name={"In Process"} statusId={2} />
+          <ColumnItems
+            listTask={listTask}
+            name={"In Process"}
+            statusId={2}
+            onOpenModal={onOpenModalEdit}
+          />
 
-          <ColumnItems listTask={listTask} name={"In Preview"} statusId={3} />
+          <ColumnItems
+            listTask={listTask}
+            name={"In Preview"}
+            statusId={3}
+            onOpenModal={onOpenModalEdit}
+          />
 
-          <ColumnItems listTask={listTask} name={"Done"} statusId={4} />
+          <ColumnItems
+            listTask={listTask}
+            name={"Done"}
+            statusId={4}
+            onOpenModal={onOpenModalEdit}
+          />
         </div>
       </div>
 
@@ -87,7 +118,8 @@ function App() {
       {displayModalEdit ? (
         <ModalEditCart
           onCloseModal={onCloseModalEdit}
-          handleAddTask={handleAddTask}
+          handleEditTask={handleEditTask}
+          idCart={idCart}
         />
       ) : (
         ""

@@ -5,6 +5,7 @@ const ModalEditCart = (props) => {
   const [title, setTitle] = useState("");
   const [des, setDes] = useState("");
   const [status, setStatus] = useState("");
+
   const onChangeTitle = (e) => {
     const value = e.target.value;
 
@@ -25,13 +26,13 @@ const ModalEditCart = (props) => {
 
   const onSubmit = () => {
     const task = {
-      taskId: Date.now(),
+      taskId: props.idCart,
       title: title,
       description: des,
       statusId: status,
     };
 
-    props.handleAddTask(task);
+    props.handleEditTask(task);
   };
 
   return (

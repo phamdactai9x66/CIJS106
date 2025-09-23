@@ -31,7 +31,7 @@ const ModalCreateCart = (props) => {
       statusId: status,
     };
 
-    props.handleAddTask(task);
+    props.handleEditTask(task);
   };
 
   return (

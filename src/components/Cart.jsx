@@ -1,7 +1,6 @@
 import React from "react";
 
 const Cart = (task) => {
-  console.log(task);
   return (
     <div className="CartItem p-1" key={task.id}>
       <div className="headerCart flex justify-between items-center">
@@ -9,7 +8,7 @@ const Cart = (task) => {
         <div>
           <button
             className="bg-amber-200 rounded-sm p-1 hover:bg-amber-600 hover:text-white"
-            onClick={task.onOpenModal}
+            onClick={() => task.onOpenModal(task.id)}
           >
             Edit
           </button>
