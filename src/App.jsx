@@ -4,11 +4,14 @@ import Cart from "./components/Cart";
 import ColumnItems from "./components/ColumnItems";
 import { tasks } from "./constant";
 import ModalCreateCart from "./components/ModalCreateCart";
+import ModalEditCart from "./components/ModalEditCart";
 
 function App() {
   const [listTask, setListTask] = useState(tasks);
 
   const [displayModal, setDisplayModal] = useState(false);
+
+  const [displayModalEdit] = useState(false);
 
   const onChange = (event) => {
     const value = event.target.value;
@@ -61,6 +64,15 @@ function App() {
 
       {displayModal ? (
         <ModalCreateCart
+          onCloseModal={onCloseModal}
+          handleAddTask={handleAddTask}
+        />
+      ) : (
+        ""
+      )}
+
+      {displayModalEdit ? (
+        <ModalEditCart
           onCloseModal={onCloseModal}
           handleAddTask={handleAddTask}
         />
