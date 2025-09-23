@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { taskStatus } from "../constant";
 
 const ModalEditCart = (props) => {
-  const [title, setTitle] = useState("");
-  const [des, setDes] = useState("");
-  const [status, setStatus] = useState("");
+  const findTask = props.listTask.find((e) => e.taskId === props.idCart);
+
+  const [title, setTitle] = useState(findTask.title);
+  const [des, setDes] = useState(findTask.description);
+  const [status, setStatus] = useState(findTask.statusId);
 
   const onChangeTitle = (e) => {
     const value = e.target.value;

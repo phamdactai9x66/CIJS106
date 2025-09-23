@@ -117,6 +117,7 @@ function App() {
 
       {displayModalEdit ? (
         <ModalEditCart
+          listTask={listTask}
           onCloseModal={onCloseModalEdit}
           handleEditTask={handleEditTask}
           idCart={idCart}
