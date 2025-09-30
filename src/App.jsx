@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Cart from "./components/Cart";
 import ColumnItems from "./components/ColumnItems";
@@ -7,7 +7,9 @@ import ModalCreateCart from "./components/ModalCreateCart";
 import ModalEditCart from "./components/ModalEditCart";
 
 function App() {
-  const [listTask, setListTask] = useState(tasks);
+  const [loading, setLoading] = useState(false);
+
+  const [listTask, setListTask] = useState([]);
 
   const [displayModal, setDisplayModal] = useState(false);
 
@@ -32,6 +34,22 @@ function App() {
 
     setListTask(findItem);
   };
+
+  const handleApiTask = async () => {
+    setLoading(true);
+    const callApiTask = await fetch("http://localhost:3000/tasks");
+
+    const data = await callApiTask.json();
+
+    setListTask(data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    handleApiTask();
+
+    return () => {};
+  }, []);
 
   const onOpenModal = () => setDisplayModal(true);
 
@@ -76,33 +94,39 @@ function App() {
         </div>
 
         <div className="mainContent">
-          <ColumnItems
-            listTask={listTask}
-            name={"To Do"}
-            statusId={1}
-            onOpenModal={onOpenModalEdit}
-          />
+          {loading ? (
+            <h1>Loading...</h1>
+          ) : (
+            <>
+              <ColumnItems
+                listTask={listTask}
+                name={"To Do"}
+                statusId={1}
+                onOpenModal={onOpenModalEdit}
+              />
 
-          <ColumnItems
-            listTask={listTask}
-            name={"In Process"}
-            statusId={2}
-            onOpenModal={onOpenModalEdit}
-          />
+              <ColumnItems
+                listTask={listTask}
+                name={"In Process"}
+                statusId={2}
+                onOpenModal={onOpenModalEdit}
+              />
 
-          <ColumnItems
-            listTask={listTask}
-            name={"In Preview"}
-            statusId={3}
-            onOpenModal={onOpenModalEdit}
-          />
+              <ColumnItems
+                listTask={listTask}
+                name={"In Preview"}
+                statusId={3}
+                onOpenModal={onOpenModalEdit}
+              />
 
-          <ColumnItems
-            listTask={listTask}
-            name={"Done"}
-            statusId={4}
-            onOpenModal={onOpenModalEdit}
-          />
+              <ColumnItems
+                listTask={listTask}
+                name={"Done"}
+                statusId={4}
+                onOpenModal={onOpenModalEdit}
+              />
+            </>
+          )}
         </div>
       </div>
 
