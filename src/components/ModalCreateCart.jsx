@@ -25,13 +25,24 @@ const ModalCreateCart = (props) => {
 
   const onSubmit = () => {
     const task = {
-      taskId: Date.now(),
+      // taskId: Date.now(),
       title: title,
       description: des,
       statusId: status,
     };
 
-    props.handleEditTask(task);
+    fetch("http://localhost:3000/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+    // props.handleEditTask(task);
   };
 
   return (
