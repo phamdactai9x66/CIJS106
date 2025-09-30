@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { taskStatus } from "../constant";
 
 const ModalEditCart = (props) => {
-  const findTask = props.listTask.find((e) => e.taskId === props.idCart);
+  const findTask = {};
 
   const [title, setTitle] = useState(findTask.title);
   const [des, setDes] = useState(findTask.description);
@@ -28,13 +28,24 @@ const ModalEditCart = (props) => {
 
   const onSubmit = () => {
     const task = {
-      taskId: props.idCart,
       title: title,
       description: des,
       statusId: status,
     };
 
-    props.handleEditTask(task);
+    fetch(`http://localhost:3000/tasks/${props.idCart}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+
+    // props.handleEditTask(task);
   };
 
   return (

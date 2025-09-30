@@ -24,7 +24,7 @@ const ColumnItems = ({ listTask, name, statusId, className, onOpenModal }) => {
             <Cart
               title={task.title}
               description={task.description}
-              id={task.taskId}
+              id={task.id}
               onOpenModal={onOpenModal}
             />
           );
