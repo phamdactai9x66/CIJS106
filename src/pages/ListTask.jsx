@@ -5,13 +5,18 @@ import ColumnItems from "../components/ColumnItems";
 import { tasks } from "../constant";
 import ModalCreateCart from "../components/ModalCreateCart";
 import ModalEditCart from "../components/ModalEditCart";
+import { useSearchParams } from "react-router";
 
 function ListTask() {
+  const [searchParams] = useSearchParams();
+
+  const isOpen = searchParams.get("openModalCreate") == "true";
+
   const [loading, setLoading] = useState(false);
 
   const [listTask, setListTask] = useState([]);
 
-  const [displayModal, setDisplayModal] = useState(false);
+  const [displayModal, setDisplayModal] = useState(isOpen);
 
   const [displayModalEdit, setDisplayModalEdit] = useState(false);
 
