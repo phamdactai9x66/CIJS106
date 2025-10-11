@@ -1,36 +1,46 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { taskStatus } from "../constant";
 
 const ModalEditCart = (props) => {
-  const findTask = {};
+  // const findTask = {};
 
-  const [title, setTitle] = useState(findTask.title);
-  const [des, setDes] = useState(findTask.description);
-  const [status, setStatus] = useState(findTask.statusId);
+  const titleField = useRef("");
+  const descriptionField = useRef("");
+  const statusField = useRef("");
 
-  const onChangeTitle = (e) => {
-    const value = e.target.value;
+  useEffect(() => {
+    const findTask = props.listTask.find((e) => {
+      return e.id === props.idCart;
+    });
 
-    setTitle(value);
-  };
+    if (findTask) {
+      titleField.current.value = findTask.title;
+
+      descriptionField.current = findTask.description;
+
+      // console.log(titleField.current);
+    }
+
+    return () => {};
+  }, []);
 
   const onChangeDes = (e) => {
     const value = e.target.value;
 
-    setDes(value);
+    descriptionField.current = value;
   };
 
   const onChangeStatus = (e) => {
     const value = e.target.value;
 
-    setStatus(value);
+    statusField.current = value;
   };
 
   const onSubmit = () => {
     const task = {
-      title: title,
-      description: des,
-      statusId: status,
+      title: titleField.current.value,
+      description: descriptionField.current,
+      statusId: statusField.current,
     };
 
     fetch(`http://localhost:3000/tasks/${props.idCart}`, {
@@ -60,25 +70,15 @@ const ModalEditCart = (props) => {
         {/* field Title */}
         <div className="input">
           <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            value={title}
-            onChange={onChangeTitle}
-            id="title"
-          />
+          <input type="text" id="title" ref={titleField} />
         </div>
 
         <div className="input">
           <label htmlFor="description">Description:</label>
-          <input
-            type="text"
-            id="description"
-            value={des}
-            onChange={onChangeDes}
-          />
+          <input type="text" id="description" onChange={onChangeDes} />
         </div>
 
-        <select name="status" id="" value={status} onChange={onChangeStatus}>
+        <select name="status" id="" onChange={onChangeStatus}>
           {taskStatus.map((e) => {
             return (
               <option value={e.statusId} key={e.statusId}>
