@@ -1,34 +1,37 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { taskStatus } from "../constant";
 
 const ModalCreateCart = (props) => {
-  const [title, setTitle] = useState("");
-  const [des, setDes] = useState("");
-  const [status, setStatus] = useState("");
-  const onChangeTitle = (e) => {
-    const value = e.target.value;
+  const titleField = useRef("");
+  const descriptionField = useRef("");
+  const statusField = useRef("");
 
-    setTitle(value);
+  const onChangeTitle = (e) => {
+    const valueInput = e.target.value;
+
+    titleField.current = valueInput;
   };
 
   const onChangeDes = (e) => {
-    const value = e.target.value;
+    const valueInput = e.target.value;
 
-    setDes(value);
+    descriptionField.current = valueInput;
   };
 
   const onChangeStatus = (e) => {
-    const value = e.target.value;
+    const valueInput = e.target.value;
 
-    setStatus(value);
+    statusField.current = valueInput;
+
+    // setStatus(value);
   };
 
   const onSubmit = () => {
     const task = {
       // taskId: Date.now(),
-      title: title,
-      description: des,
-      statusId: status,
+      title: titleField.current,
+      description: descriptionField.current,
+      statusId: statusField.current,
     };
 
     fetch("http://localhost:3000/tasks", {
@@ -42,8 +45,10 @@ const ModalCreateCart = (props) => {
       .then((data) => {
         console.log(data);
       });
-    // props.handleEditTask(task);
+    props.handleEditTask(task);
   };
+
+  console.log("xin chao");
 
   return (
     <div className="modalCreateCart">
@@ -57,22 +62,12 @@ const ModalCreateCart = (props) => {
         {/* field Title */}
         <div className="input">
           <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            value={title}
-            onChange={onChangeTitle}
-            id="title"
-          />
+          <input type="text" onChange={onChangeTitle} id="title" />
         </div>
 
         <div className="input">
           <label htmlFor="description">Description:</label>
-          <input
-            type="text"
-            id="description"
-            value={des}
-            onChange={onChangeDes}
-          />
+          <input type="text" id="description" onChange={onChangeDes} />
         </div>
 
         <select name="status" id="" value={status} onChange={onChangeStatus}>
