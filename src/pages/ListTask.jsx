@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./ListTask.css";
 import Cart from "../components/Cart";
 import ColumnItems from "../components/ColumnItems";
@@ -7,6 +7,7 @@ import ModalCreateCart from "../components/ModalCreateCart";
 import ModalEditCart from "../components/ModalEditCart";
 import { useSearchParams } from "react-router";
 
+// useRef, memo, useMemo, useCallback
 function ListTask() {
   const [searchParams] = useSearchParams();
 
@@ -60,10 +61,10 @@ function ListTask() {
 
   const onCloseModal = () => setDisplayModal(false);
 
-  const onOpenModalEdit = (idTask) => {
+  const onOpenModalEdit = React.useCallback((idTask) => {
     setDisplayModalEdit(true);
     setIdCart(idTask);
-  };
+  }, []);
 
   const onCloseModalEdit = () => {
     setDisplayModalEdit(false);

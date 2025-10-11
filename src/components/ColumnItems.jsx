@@ -34,4 +34,4 @@ const ColumnItems = ({ listTask, name, statusId, className, onOpenModal }) => {
   );
 };
 
-export default ColumnItems;
+export default React.memo(ColumnItems);
