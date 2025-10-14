@@ -70,6 +70,7 @@ const GeminiAPI = (props) => {
           <div className="boxGeMiniAPI">
             <div className="conversation">
               {listConversation.map((item) => {
+                // user response
                 if (item.type == "user") {
                   return (
                     <div className="userType" key={item.id}>
@@ -77,6 +78,7 @@ const GeminiAPI = (props) => {
                     </div>
                   );
                 }
+                // bot response
                 return (
                   <div className="botType" key={item.id}>
                     <span className="bold">bot</span>: {item.message}
