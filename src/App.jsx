@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import { Navigate, Route, Routes } from "react-router";
 import TaskDetail from "./pages/TaskDetail";
 import ProtectRoute from "./components/ProtectRoute";
+import GeminiAPI from "./components/geMiniAPI";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
@@ -15,28 +16,32 @@ const App = () => {
 
   return (
     <>
-      <Routes>
-        <Route
-          path="/"
-          element={<Login isLogin={isLogin} handleLogin={handleLogin} />}
-        />
-        <Route
-          path="/list_task"
-          element={
-            <ProtectRoute isLogin={isLogin}>
-              <ListTask />
-            </ProtectRoute>
-          }
-        />
-        <Route
-          path="/list_task/:taskId"
-          element={
-            <ProtectRoute isLogin={isLogin}>
-              <TaskDetail />
-            </ProtectRoute>
-          }
-        />
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route
+            path="/"
+            element={<Login isLogin={isLogin} handleLogin={handleLogin} />}
+          />
+          <Route
+            path="/list_task"
+            element={
+              <ProtectRoute isLogin={isLogin}>
+                <ListTask />
+              </ProtectRoute>
+            }
+          />
+          <Route
+            path="/list_task/:taskId"
+            element={
+              <ProtectRoute isLogin={isLogin}>
+                <TaskDetail />
+              </ProtectRoute>
+            }
+          />
+        </Routes>
+
+        <GeminiAPI />
+      </div>
     </>
   );
 };
