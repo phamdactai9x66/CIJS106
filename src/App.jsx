@@ -10,8 +10,14 @@ import GeminiAPI from "./components/geMiniAPI";
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
 
+  const [modalGeminiAPI, setModalGeminiAPI] = useState(false);
+
   const handleLogin = () => {
     setIsLogin(true);
+  };
+
+  const handleToggleModal = () => {
+    setModalGeminiAPI(!modalGeminiAPI);
   };
 
   return (
@@ -40,7 +46,10 @@ const App = () => {
           />
         </Routes>
 
-        <GeminiAPI />
+        <GeminiAPI
+          modalGeminiAPI={modalGeminiAPI}
+          handleToggleModal={handleToggleModal}
+        />
       </div>
     </>
   );
