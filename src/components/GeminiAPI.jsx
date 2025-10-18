@@ -2,19 +2,9 @@ import React, { useState, useRef } from "react";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("AIzaSyDm8iAOSoBQKLrzvw6Xsd8ouSDgrP97CQg");
+const genAI = new GoogleGenerativeAI("zvw6Xsd8ouSDgrP97CQg");
 
 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
-// const fakeResponse = new Promise((res, rej) => {
-//   try {
-//     setTimeout(() => {
-//       res("AI: Hello World");
-//     }, 3000);
-//   } catch (error) {
-//     rej(error);
-//   }
-// });
 
 const GeminiAPI = (props) => {
   const [listConversation, setListConversation] = useState([]);
