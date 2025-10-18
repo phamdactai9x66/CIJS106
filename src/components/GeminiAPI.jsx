@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("zvw6Xsd8ouSDgrP97CQg");
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_KEY);
 
 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
