@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import { Navigate, Route, Routes } from "react-router";
 import TaskDetail from "./pages/TaskDetail";
 import ProtectRoute from "./components/ProtectRoute";
-import GeminiAPI from "./components/geMiniAPI";
+import GeminiAPI from "./components/GeminiAPI";
 
 const App = () => {
   const [isLogin, setIsLogin] = useState(false);
